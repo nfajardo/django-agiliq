@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+   {% block content %}
+        <p>Las categorias son:</p>
+        
+        {% for obj in object_list %}
+            {{ obj.name }}
+        {% endfor %}
+        
+    {% endblock content %}

@@ -5,6 +5,8 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from events.admin import event_admin_site
+
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
@@ -21,6 +23,11 @@ urlpatterns = [
     ),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path("entities/", include("entities.urls")),
+
+    # diferent admin site for apps events and entities
+    path('hero-admin/', event_admin_site.urls),
+
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )
@@ -53,6 +60,6 @@ if settings.DEBUG:
 
 
 # personalize the admin site
-admin.site.site_header = "UMSRA Admin"
+# admin.site.site_header = "UMSRA Admin"
 admin.site.site_title = "UMSRA Admin Portal"
 admin.site.index_title = "Welcome to UMSRA Researcher Portal"

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+   {% block content %}
+        <p>Los origenes son:</p>
+        
+        {% for obj in origin_list %}
+            {{ obj.name }}
+        {% endfor %}
+        
+    {% endblock content %}
