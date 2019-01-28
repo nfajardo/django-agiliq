@@ -26,7 +26,10 @@ class TddExample(unittest.TestCase):
     def test_yarg_not_number(self):
         # return error message if y args is not number
         self.assertRaises(TypeError, self.calc.add, 2, ('three'))
-
+    
+    def test_rest_bad(self):
+        result = self.calc.rest_bad(2, 1)
+        self.assertEqual(1, result)
 
 if __name__ == '__main__':
     unittest.main()

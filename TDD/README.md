@@ -95,3 +95,8 @@ Aparte de la documentación oficial, los siguientes enlaces fueron de mucha ayud
 
 - [Beginning Test-Driven Development in Python](https://code.tutsplus.com/tutorials/beginning-test-driven-development-in-python--net-30137)
 - [Curso Udemy python - Hector Costa](https://github.com/hcosta/curso-python-udemy/blob/master/Fase%204%20-%20Temas%20avanzados/Tema%2016%20-%20Documentaci%C3%B3n%20y%20Pruebas/Lecci%C3%B3n%2004%20(Apuntes)%20-%20Unittest.ipynb)
+- https://dzone.com/articles/tdd-python-5-minutes
+- https://www.bogotobogo.com/python/python_unit_testing.php
+-  https://docs.python-guide.org/writing/tests/
+- https://code.likeagirl.io/in-tests-we-trust-tdd-with-python-af69f47e6932
+- https://medium.com/@muratsert1453/django-tdd-and-unit-testing-2d0d4126b0b9
