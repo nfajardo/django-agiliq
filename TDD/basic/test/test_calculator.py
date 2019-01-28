@@ -4,21 +4,29 @@ from app.calculator import Calculator
 
 class TddExample(unittest.TestCase):
 
+    def setUp(self):
+        self.calc = Calculator()
+
     def test_add(self):
-        cal = Calculator()
-        result = cal.add(2,2)
-        self.assertEqual(4, result)
+        # test sum int
+        result = self.calc.add(2, 11)
+        self.assertEqual(13, result)
+        # test sum float
+        result1 = self.calc.add(12.55, 100.02)
+        self.assertEqual(112.57, result1)
 
-"""
-En este punto la funcion Calculator no ha sido definida, porq lo que nos da el siguiente error:
+    def test_args_num(self):
+        # return TypeError if x and y are not number
+        self.assertRaises(TypeError, self.calc.add, 'one', 'three')
+    
+    def test_xarg_not_number(self):
+        # return error message if x args is not number
+        self.assertRaises(TypeError, self.calc.add, [1,2,3], 33.456)
+ 
+    def test_yarg_not_number(self):
+        # return error message if y args is not number
+        self.assertRaises(TypeError, self.calc.add, 2, ('three'))
 
-NameError: name 'Calculator' is not defined
-
-----------------------------------------------------------------------
-Ran 1 test in 0.000s
-
-FAILED (errors=1)
-"""
 
 if __name__ == '__main__':
     unittest.main()

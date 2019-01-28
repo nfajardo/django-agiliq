@@ -69,19 +69,23 @@ Para ejecutar los test (ubicados en el directorio basic) escribimos:
 
 ```bash
 $ python -m unittest -v basic_test.py
-test_isupper (basic.basic_test.TestStringMethods) ... ok
-test_split (basic.basic_test.TestStringMethods) ... ok
-test_upper (basic.basic_test.TestStringMethods) ... ok
+test_factorial (basic_test.TestFixture) ... ok
+test_count (basic_test.TestStringMethods) ... ok
+test_isupper (basic_test.TestStringMethods) ... ok
+test_split (basic_test.TestStringMethods) ... ok
+test_upper (basic_test.TestStringMethods) ... ok
 
 ----------------------------------------------------------------------
-Ran 3 tests in 0.000s
+Ran 5 tests in 0.000s
 
 OK
+Preparando el contexto de la prueba
+limpiando el contexto
 ```
 
 #### opcion 2
 
-Funciona solo si llamo a la clase desde el main:``unittest.main()`
+Funciona solo si llamo a la clase desde el main: `unittest.main()`
 
 > `python test/test_calculator.py`
 
