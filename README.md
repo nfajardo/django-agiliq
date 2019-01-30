@@ -9,5 +9,3 @@ Practicas de apps con Django según https://books.agiliq.com/en/latest/
 2. *cookbook* contiene los ejercicios del libro *django-admin-cookbook.pdf*
 
 3. *tdd_django* proyecto con resumenes y buenas prácticas de pruebas
-
-4. *util_scripts* scripts utiles para proyectos django, por ejemplo: eliminar binarios, borrar migraciones, cargar datos, exportar datos, etc.
