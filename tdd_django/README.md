@@ -6,6 +6,7 @@ Para django tenemos diferentes conjuntos de pruebas, entre ellas:
 - Pruebas sobre urls
 - Pruebas sobre vistas
 - Pruebas sobre formularios
+- Pruebas de coverage
 
 ## Links
 
