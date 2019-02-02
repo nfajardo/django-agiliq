@@ -1,8 +1,6 @@
 from django.test import TestCase
 
-from .models import Origin, Category
-
-# Create your tests here.
+from entities.models import Origin, Category, Entity, Hero, Villain
 
 # test models
 class OriginTestCase(TestCase):
