@@ -1,5 +1,5 @@
 [run]
 include = cookbook/*
-omit = *migrations*, *tests*
+omit = *migrations*
 plugins =
     django_coverage_plugin
