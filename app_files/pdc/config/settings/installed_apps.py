@@ -26,13 +26,14 @@ THIRD_PARTY_APPS = [
 
 TENANT_APPS = [
     # Your tenant-specific apps
-    'apps.files',
+    'app_files',
 ]
 
 LOCAL_APPS = [
-    'apps.common',
-    'apps.core',
-    'apps.users',
+    'app_common',
+    'app_core',
+    'app_home',
+    'app_users',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + TENANT_APPS + LOCAL_APPS
