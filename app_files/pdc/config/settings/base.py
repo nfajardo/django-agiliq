@@ -26,7 +26,7 @@ ALLOWED_HOSTS = []
 MIDDLEWARE = [
     # Add TenantMiddleware on top of the MIDDLEWARE list to allow every request
     # redirect to the specific tenant
-    'tenant_schemas.middleware.TenantMiddleware',
+    #'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -99,6 +99,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+SITE_ID = 1
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -110,18 +112,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-STATIC_ROOT = str(ROOT_DIR('staticfiles'))
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    str(APPS_DIR.path('static')),
-]
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static_collected')
 
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, '..', "static"),
+)
 
-MEDIA_ROOT = str(APPS_DIR('media'))
+MEDIA_ROOT = os.path.join(BASE_DIR, '..', "media")
 MEDIA_URL = '/media/'
 
 

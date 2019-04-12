@@ -21,7 +21,7 @@ DATABASES = {
     'default': {
         # Use the tenant_schemas specific postgresql_backend
         'ENGINE': 'tenant_schemas.postgresql_backend',
-        'NAME': 'multitenant2',
+        'NAME': 'test_pdc',
         'USER': 'admin',
         'PASSWORD': 'datatres',
         'HOST': 'localhost',
