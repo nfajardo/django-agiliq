@@ -12,3 +12,5 @@ Los test ahorran dinero, tiempo y vidas.
 3. *test_django* contiene ejercicios de pruebas
 
 4. *Notas* apuntes sobre los conceptos revisados
+
+5. *django_multitenant* ejemplo de construcción de tenants.
