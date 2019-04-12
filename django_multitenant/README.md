@@ -40,5 +40,5 @@ Adicionar:
 
 Para ejecutar este proyecto debes:
 
-- TODO
+- Ejecutar migraciones: `python manage.py migrate_schemas`
 
