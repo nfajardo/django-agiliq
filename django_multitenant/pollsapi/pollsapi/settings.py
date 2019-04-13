@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     'rest_framework',
 
@@ -82,8 +83,6 @@ WSGI_APPLICATION = 'pollsapi.wsgi.application'
 
 DATABASES = {
     "default": {"ENGINE": "django.db.backends.sqlite3", "NAME":  os.path.join(BASE_DIR, "default.db")},
-    "thor": {"ENGINE": "django.db.backends.sqlite3", "NAME":  os.path.join(BASE_DIR, "thor.db")},
-    "potter": {"ENGINE": "django.db.backends.sqlite3", "NAME":  os.path.join(BASE_DIR, "potter.db")},
 }
 
 # DATABASE_ROUTERS = ["tenants.router.TenantRouter"]
