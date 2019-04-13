@@ -30,7 +30,9 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-INSTALLED_APPS = [
+SHARED_APPS = [
+    'tenant_schemas',  # mandatory, should always be before any django app
+    'tenants',  # you must list the app where your tenant model resides in
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,11 +43,22 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'polls',
-    'tenants',
 ]
 
+TENANT_APPS = [
+    # Your tenant-specific apps
+    'polls'
+]
+
+INSTALLED_APPS = SHARED_APPS + TENANT_APPS
+
+# We need to specify where our tenant model lives
+TENANT_MODEL = 'tenants.Tenant'
+
 MIDDLEWARE = [
+    # Add TenantMiddleware on top of the MIDDLEWARE list to allow every request
+    # redirect to the specific tenant
+    'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,7 +68,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'pollsapi.urls'
+ROOT_URLCONF = 'pollsapi.public_urls'
 
 TEMPLATES = [
     {
@@ -82,10 +95,22 @@ WSGI_APPLICATION = 'pollsapi.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {"ENGINE": "django.db.backends.sqlite3", "NAME":  os.path.join(BASE_DIR, "default.db")},
+    'default': {
+        # Use the tenant_schemas specific postgresql_backend
+        'ENGINE': 'tenant_schemas.postgresql_backend',
+        'NAME': 'polldb',
+        'USER': 'admin',
+        'PASSWORD': 'datatres',
+        'HOST': 'localhost',
+        'PORT': 5433,
+    }
 }
 
-# DATABASE_ROUTERS = ["tenants.router.TenantRouter"]
+# We need to provide this DATABASE_ROUTER in order to get the apps synced to the
+# correct schema
+DATABASE_ROUTERS = (
+    'tenant_schemas.routers.TenantSyncRouter',
+)
 
 
 # Password validation
@@ -125,3 +150,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+# Media files
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'tenant_schemas.storage.TenantFileSystemStorage'

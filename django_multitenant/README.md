@@ -40,5 +40,5 @@ Adicionar:
 
 Para ejecutar este proyecto debes:
 
-- Ejecutar migraciones: `python manage.py migrate_schemas`
-
+1. `python manage.py makemigrations`
+2. `python manage.py migrate_schemas --shared`
