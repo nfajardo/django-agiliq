@@ -45,6 +45,7 @@ TENANT_APPS = [
     # Your tenant-specific apps
     'django.contrib.admin',
     'django.contrib.auth',
+    'notes',
 ]
 
 INSTALLED_APPS = SHARED_APPS + TENANT_APPS
@@ -163,4 +164,6 @@ STATICFILES_DIRS = (
 
 # Media files
 MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE = 'tenant_schemas.storage.TenantFileSystemStorage'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+# DEFAULT_FILE_STORAGE = 'tenant_schemas.storage.TenantFileSystemStorage'
