@@ -40,5 +40,16 @@ Adicionar:
 
 Para ejecutar este proyecto debes:
 
-1. `python manage.py makemigrations`
-2. `python manage.py migrate_schemas --shared`
+1. Crear una base de datos postgresl y su rol
+2. Crear migraciones: `python manage.py makemigrations`. Este paso es opcional si tienes varias apps y quieres migrarlas por separado
+3. Migrar esquemas con tenant: `python manage.py migrate_schemas`
+ ![img](pasos/paso-uno-dos.PNG)
+4. Crear tenant publico: `python manage.py create_public_tenant`
+ ![img2](pasos/paso-tres-1.PNG)
+ Crear tenant para un cliente:
+ ![img3](pasos/paso-tres.PNG)
+5. Crear superusuario para un tenant especifico: `python manage.py createsuperuser --username=admin --schema=customer1`
+ ![img4](pasos/paso-cinco.PNG)
+6. Ejecutar servidor: `python manage.py runserver`
+7. Ir al tenant y verificar que funciona
+ ![img5](pasos/funciona.PNG)
