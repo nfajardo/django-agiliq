@@ -25,6 +25,8 @@ SECRET_KEY = 'z_)78zlpaquy+4f1=pe@xbl9-+)^j&!5q@04d(rl*&plz%@w*9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# We need to allow every host in development to support the subdomains,
+# Be sure to configure it properly in production
 ALLOWED_HOSTS = ['*']
 
 
@@ -33,16 +35,13 @@ ALLOWED_HOSTS = ['*']
 SHARED_APPS = [
     'tenant_schemas',  # mandatory, should always be before any django app
     'tenants',  # you must list the app where your tenant model resides in
-    'django.contrib.admin',
-    'django.contrib.auth',
+
+    # everything below here is up to your project needs
+    'bootstrap3',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.humanize',
-
-    'rest_framework',
-
+    'django.contrib.staticfiles'
 ]
 
 TENANT_APPS = [
@@ -50,6 +49,7 @@ TENANT_APPS = [
     'polls'
 ]
 
+# We need to mix shared and tenant apps
 INSTALLED_APPS = SHARED_APPS + TENANT_APPS
 
 # We need to specify where our tenant model lives
@@ -63,12 +63,16 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'pollsapi.public_urls'
+# Sometimes we want to have different urls and views in our public tenant and
+# our specific tenants, so we need to set the URLCONF files for each case
+# Please check: http://django-tenant-schemas.readthedocs.io/en/latest/install.html#tenant-view-routing
+# for more info.
+ROOT_URLCONF = 'pollsapi.tenant_urls'
+PUBLIC_SCHEMA_URLCONF = 'pollsapi.public_urls'
 
 TEMPLATES = [
     {
@@ -81,12 +85,12 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'pollsapi.wsgi.application'
 
@@ -98,7 +102,7 @@ DATABASES = {
     'default': {
         # Use the tenant_schemas specific postgresql_backend
         'ENGINE': 'tenant_schemas.postgresql_backend',
-        'NAME': 'polldb',
+        'NAME': 'polls_db',
         'USER': 'admin',
         'PASSWORD': 'datatres',
         'HOST': 'localhost',
