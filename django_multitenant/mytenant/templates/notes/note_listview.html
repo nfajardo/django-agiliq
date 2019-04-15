@@ -1,0 +1,23 @@
+{% block content %}
+
+<h1>Seccion de Notas</h1>
+
+{% for note in object_list %}
+    <ul>
+        <li>Fecha: {{ note.created_at }}</li>
+        <li>De: {{ note.sender }}</li>
+        <li>Para: {{ note.recipient }}</li>
+        <li>Msj: {{ note.msj }}</li>
+        <li><img src="{{ note.img.url }}" height="120" width="100"></li>
+        <br> ruta de la imagen:
+        <br>{{ note.img.url }}
+    </ul> 
+    <hr>
+
+{% empty %}
+    <p>Por favor crea una nota.</p><br>
+    <p><a href="{% url 'notes:create_note' %}">Crear nota pulsa aquí</a></p>
+
+{% endfor %}
+
+{% endblock content %}
